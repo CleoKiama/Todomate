@@ -1,0 +1,30 @@
+{
+  "name": "todomate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev ",
+    "build": "next build",
+    "start": "next start ",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth/firebase-adapter": "^1.0.0",
+    "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@tanstack/react-query": "^4.29.23",
+    "axios": "^1.4.0",
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.7",
+    "firebase": "^10.0.0",
+    "firebase-admin": "^11.10.1",
+    "nanoid": "^4.0.2",
+    "next": "13.4.7",
+    "next-auth": "^4.22.1",
+    "react": "18.2.0",
+    "react-datepicker": "^4.18.0",
+    "react-dom": "18.2.0",
+    "react-loader-spinner": "^5.4.5",
+    "react-toastify": "^9.1.3"
+  }
+}
