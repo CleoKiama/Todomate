@@ -160,7 +160,6 @@ function Body(props) {
     function listenONlineStatus () {
       var id
       if (typeof window==='object') {
-        console.log('setting the online status callback')
         window.addEventListener('offline',()=>{
           id  = toast.error('"Offline Mode: Your changes will be saved once you regain internet connectivity."', {
             position: "bottom-center",
