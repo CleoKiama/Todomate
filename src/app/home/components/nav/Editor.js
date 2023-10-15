@@ -4,29 +4,25 @@ import styles from "../../page.module.css";
 import { itemsContext } from "../provider.js";
 import Image from "next/image";
 import { nanoid } from "nanoid";
-import { useRouter } from "next/navigation.js";
+import { redirect, useRouter } from "next/navigation";
 import ConfirmDialog from "../confirmation/confirmation";
 export default function Editor(props) {
-  const { listItems, setListItems, editCategories } = useContext(itemsContext);
+  const { listItems, setListItems, editCategories, reRouteAfterDelete } = useContext(itemsContext);
   const router = useRouter();
-  
+
   function initiateDelete() {
-    router.push('/home/all-tasks')
     setListItems((prev) =>
       prev.filter((element, index) => {
         if (index === props.index) {
           editCategories("delete", {
             categoryId: element.categoryId,
           });
-          console.log(
-            'redirecting...'
-          );
-      
         }
         return index !== props.index;
       })
     );
-      
+    let link = '/home/all-tasks'
+    router.replace(link);
   }
   function onDuplicate() {
     let listItemsCopy = [...listItems];
@@ -41,7 +37,7 @@ export default function Editor(props) {
     listItemsCopy.splice(index, 0, value);
     setListItems(listItemsCopy);
   }
- 
+
   let link = `/home/${listItems[props.index].categoryId}`;
 
   return (
@@ -53,7 +49,7 @@ export default function Editor(props) {
         alt="ellipsis icon image"
         onClick={(e) => {
           props.toggleRender(e);
-          router.push(link);
+          router.replace(link);
         }}
       />
       {props.renderEditor === 1 && (
@@ -77,30 +73,30 @@ export default function Editor(props) {
             <p>duplicate</p>
           </div>
           <hr className={styles.delete_separator} />
-          <ConfirmDialog 
-           dialogTitle={'Delete the category'}
-          dialogDescription={`This will delete ${listItems[props.index].description}.This action cannot be undone`}
-          deleteConfirmed={initiateDelete} 
-          trigger={Trigger()}
-           /> 
+          <ConfirmDialog
+            dialogTitle={"Delete the category"}
+            dialogDescription={`This will delete ${
+              listItems[props.index].description
+            }.This action cannot be undone`}
+            deleteConfirmed={initiateDelete}
+            trigger={Trigger()}
+          />
         </div>
       )}
     </div>
   );
 }
 
-
- const Trigger = () =>{
+const Trigger = () => {
   return (
-    <div onClick={(e)=>{e.stopPropagation()}} className={styles.action_container}>
-    <Image
-    src="/delete_icon.svg"
-    height={15}
-    width={15}
-    alt="delete icon"
-  /> 
-    <p>delete</p>
-  </div>
-  )
- } 
- 
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      className={styles.action_container}
+    >
+      <Image src="/delete_icon.svg" height={15} width={15} alt="delete icon" />
+      <p>delete</p>
+    </div>
+  );
+};

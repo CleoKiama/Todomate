@@ -43,7 +43,7 @@ function Encapsulate(props) {
   const { task } = useParams();
   async function fetchTodos() {
     return axios.get(
-      `http://localhost:3000/write/tasks?categoryId=${task}&userId=${props.userId}`
+      `https://todomate-psi.vercel.app/write/tasks?categoryId=${task}&userId=${props.userId}`
     );
   }
   const { isLoading, isError, data, error, isPaused } = useQuery({
@@ -105,10 +105,10 @@ function Body(props) {
   async function postTodo(data) {
     if (data.isDelete) {
       return axios.get(
-        `http://localhost:3000/remove/tasks?taskId=${data.data}`
+        `https://todomate-psi.vercel.app/remove/tasks?taskId=${data.data}`
       );
     }
-    return axios.post(`http://localhost:3000/write/tasks`, data.data);
+    return axios.post(`https://todomate-psi.vercel.app/write/tasks`, data.data);
 
   }
   const mutation = useMutation({
@@ -161,7 +161,7 @@ function Body(props) {
       var id
       if (typeof window==='object') {
         window.addEventListener('offline',()=>{
-          id  = toast.error('"Offline Mode: Your changes will be saved once you regain internet connectivity."', {
+          id  = toast.error('Offline Mode: Your changes will be saved once you regain internet connectivity.', {
             position: "bottom-center",
             autoClose: false,
             hideProgressBar: false,

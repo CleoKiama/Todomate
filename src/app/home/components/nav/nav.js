@@ -9,17 +9,14 @@ import {
   QueryClient,
   QueryClientProvider,
   useMutation,
-  useQuery,
 } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 const client = new QueryClient();
 export default function NavContainer({ categories, userId }) {
   return (
     <>
       <QueryClientProvider client={client}>
-        <Container
-          userId={userId}
-          categories={categories}
-        />
+        <Container userId={userId} categories={categories} />
       </QueryClientProvider>
     </>
   );
@@ -47,17 +44,26 @@ function Container(props) {
     listItems: listItems,
     setListItems: setListItems,
     editCategories: initEditCategories,
-    userId :props.userId,
+    userId: props.userId,
+    reRouteAfterDelete: reRouteAfterDelete,
   };
+  const router = useRouter();
+  function reRouteAfterDelete() {
+    let link = "/home/all-tasks";
+    router.replace(link);
+  }
 
   async function editCategories(dataArg) {
     if (dataArg.id === "add") {
       const data = JSON.stringify(dataArg.dataArg);
-      return axios.post(`http://localhost:3000/write/categories`, data);
+      return axios.post(
+        `https://todomate-psi.vercel.app/write/categories`,
+        data
+      );
     }
     if (dataArg.id === "delete") {
       return axios.get(
-        `http://localhost:3000/remove/categories?categoryId=${dataArg.dataArg.categoryId}`
+        `https://todomate-psi.vercel.app/remove/categories?categoryId=${dataArg.dataArg.categoryId}`
       );
     }
   }
@@ -66,9 +72,9 @@ function Container(props) {
       id: id,
       dataArg: data,
     };
-   mutation.mutate(dataArg);
+    mutation.mutate(dataArg);
   }
- 
+
   return (
     <main className={styles.nav_container}>
       <itemsContext.Provider value={dataToPassDown}>

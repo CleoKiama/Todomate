@@ -15,9 +15,4 @@ export async function POST(request) {
   }
 }
 
-export async function GET(request, response) {
-  let searchParams = new URL(request.url).searchParams;
-  let userId = searchParams.get("userId");
-  console.log(userId);
-  return NextResponse.json("userId set up successfully");
-}
+

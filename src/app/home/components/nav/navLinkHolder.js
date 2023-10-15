@@ -8,7 +8,7 @@ import Image from "next/image";
 import { navStatus } from "@/app/provider.js";
 export default function NavLinkHolder(props) {
   const { setShowNav } = useContext(navStatus);
-  const { listItems, setListItems, editCategories } = useContext(itemsContext);
+  const { listItems , reRouteAfterDelete } = useContext(itemsContext);
   let link = `/home/${listItems[props.index].categoryId}`;
   const chooseClass = () => {
     let { task } = useParams();
@@ -29,7 +29,8 @@ export default function NavLinkHolder(props) {
   return (
     <div
       onClick={(e) => {
-        router.replace(link);
+     /*    reRouteAfterDelete() */
+        router.replace(link); 
         checkWidth();
       }}
       className={styles.link_container}

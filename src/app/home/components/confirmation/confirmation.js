@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "./styles.css";
 import Image from "next/image";
+
 const ConfirmDialog = (props) => {
   let [open, setOpen] = React.useState(false);
-  function handleClick() {
+
+  function handleClick(e) {
+      e.stopPropagation()
     setOpen(false);
     props.deleteConfirmed();
+
   }
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Dialog.Trigger asChild>
-       {props.trigger} 
-      </Dialog.Trigger>
+      <Dialog.Trigger asChild>{props.trigger}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent">

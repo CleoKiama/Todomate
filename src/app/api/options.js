@@ -2,7 +2,7 @@ import GoogleProvider from  "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import {db} from '@/app/firebase/firestore/firestore.js'
-
+import { cert } from "firebase-admin/app"
 
 export const authOptions = {
     
@@ -24,7 +24,8 @@ export const authOptions = {
       sessions : {
         strategy : 'database'
       },
-      adapter: FirestoreAdapter(db),
+  
+      adapter: FirestoreAdapter(db), 
   }
   
 

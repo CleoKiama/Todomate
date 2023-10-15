@@ -116,8 +116,8 @@ const DatePickerComp = (props) => {
     <span onClick={onClick} ref={ref} className={styles.date_container}>
       <Image
         src="/calender_icon.svg"
-        height={27}
-        width={27}
+        height={20}
+        width={20}
         alt="calender icon"
         className={styles.extra_features_components}
       />
