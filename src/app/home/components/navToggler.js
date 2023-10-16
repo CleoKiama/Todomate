@@ -5,10 +5,9 @@ import { navStatus } from "@/app/provider.js";
 import { useContext } from "react";
 import Image from "next/image";
 export default function NavToggler(props) {
- const [imageState,setImageState] = useState(true)
-  const { setShowNav } = useContext(navStatus);
+
+  const {showNav,setShowNav } = useContext(navStatus);
   function handleClick() {
-    setImageState(prev=>!prev)
     setShowNav((prev) => {
       return !prev;
     });
@@ -18,7 +17,7 @@ export default function NavToggler(props) {
     <div className={styles.nav_toggler_container}>
       <Image
         type="image"
-        src={imageState?"/cancel_close_delete_icon.svg":"/hamburger_icon.svg"}
+        src={showNav?"/cancel_close_delete_icon.svg":"/hamburger_icon.svg"}
         width="25"
         height="25"
         onClick={handleClick}

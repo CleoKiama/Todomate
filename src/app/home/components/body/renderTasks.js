@@ -111,7 +111,8 @@ export default function RenderTasks(props) {
       })
     );
   }
-  function toggleImportant(id) {
+  function toggleImportant(e,id) {
+     e.stopPropagation()
     if (task === "important") {
       return props.setTodo((prev) =>
         prev.filter((current) => {
@@ -226,8 +227,8 @@ const textDecorate = task==='completed' ? {textDecoration:"line-through"} : {tex
             <p style={textDecorate}>{props.todo.description}</p>
           )}
           <Image
-            onClick={() => {
-              toggleImportant(props.todo.todoId);
+            onClick={(e) => {
+              toggleImportant(e,props.todo.todoId);
             }}
             className={styles.star_icon}
             /*check if it possible to mess with the fill css props instead to the*/
