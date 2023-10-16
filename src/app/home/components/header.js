@@ -70,9 +70,9 @@ function Profile ({name,email,profileUrl}) {
            />   
             
           <div className={styles.name_credentials}>
-          <p>{'cleophas kiama Ngumo'}</p>
+          <p>{name}</p>
           <p>{email}</p>
-         <button onClick={()=>{signOut({callbackUrl:'http://localhost:3000/home/me'})}} >sign out</button>
+         <button onClick={()=>{signOut({callbackUrl:'https://todomate-psi.vercel.app/home/all-tasks'})}} >sign out</button>
           </div> 
 
             </div>
