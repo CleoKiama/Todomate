@@ -162,9 +162,9 @@ export default function Nav({children}){
       type='image'
       src='/plus_icon.svg'
       alt='plus sign' 
-      height={23} 
+      height={20} 
       name='confirm button'
-      width={23}
+      width={20}
       onClick={addListItems}
       className={styles.main_input_image}
       /> 

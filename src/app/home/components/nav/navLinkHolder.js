@@ -73,8 +73,7 @@ function FormInput(props) {
   }, [listItems[props.index].description]);
   function editListItem(e) {
     e.preventDefault();
-     if (!formValue) 
-       
+     if (formValue) 
     setListItems((prev) =>
       prev.map((current, index) => {
         if (index === props.index) {
@@ -98,9 +97,10 @@ function FormInput(props) {
     ); 
   }
 
-  function handleBlur() {
+  function handleBlur(e) {
     if (formValue !== listItems[props.index].description) {
-      console.log("something changed");
+      console.log('edditing')
+      editListItem(e)
     }
     setTimeout(props.onBlur, 150);
   }
@@ -110,8 +110,12 @@ function FormInput(props) {
     inputRef.current.focus();
   }, []);
 
+    function handleSubmit(e) {
+      console.log('running submit')
+       handleBlur(e)
+    }
   return (
-    <form className={styles.input_container}>  
+    <form onSubmit={(e)=>{console.log('running submit');handleSubmit(e)}} className={styles.input_container}>  
       <input
         type="text"
         ref={inputRef}
