@@ -27,7 +27,7 @@ export const authOptions = {
           return {session,user}
         },
          async redirect({ url, baseUrl }) {
-           return 'http://localhost:3000/home/all-tasks'
+           return 'https://todomate-psi.vercel.app/home/all-tasks'
         } 
       },
       sessions : {
