@@ -54,6 +54,13 @@ export default function Editor(props) {
       />
       {props.renderEditor === 1 && (
         <div className={styles.editor_container}>
+            <Image
+              src="/cancel_close_delete_icon.svg"
+              height={15}
+              width={15}
+              alt="delete icon"
+              className={styles.close_editor}
+            />
           <div onClick={props.handleEdit} className={styles.action_container}>
             <Image
               src="/edit_icon.svg"
