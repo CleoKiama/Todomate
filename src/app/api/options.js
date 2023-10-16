@@ -1,8 +1,17 @@
 import GoogleProvider from  "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { FirestoreAdapter } from "@auth/firebase-adapter";
-import {db} from '@/app/firebase/firestore/firestore.js'
-import { cert } from "firebase-admin/app"
+import {initializeApp,getApps,cert, getApp} from 'firebase-admin/app';
+const { getFirestore} = require('firebase-admin/firestore');
+const serviceAccount = require('../../../accountKey.json');
+
+console.log(`console.log checking for an instance hope this works lol!!! ${getApps().length}`)
+ const app = getApps().length ? getApp() :  initializeApp({
+  credential: cert(serviceAccount),
+  databaseURL: "https://cleo-portfolio-default-rtdb.firebaseio.com"
+});
+
+ const db = getFirestore(app)
 
 export const authOptions = {
     
